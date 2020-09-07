@@ -1,18 +1,11 @@
  //Adding Map
  mymap = L.map('mapid').setView([31.771959, 35.217018], 8);
-//var mymap = L.map('mapid', {doubleClickZoom: false}).locate({setView: true, maxZoom: 16});
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributor', 
                    
                    //other attributes.
 }).addTo(mymap);
-
-L.Routing.control({
-    waypoints: [
-      //L.latLng(31.771959, 35.217018),
-      //L.latLng(31.781959, 35.227018)
-    ],
-  }).addTo(mymap);
+var marker;
 
 
 
@@ -22,7 +15,7 @@ mymap.on('mousemove',function(e){
    document.querySelector("#map_cords").innerHTML=str;
 });
 
-
+//Adding markers SVG
 var pawMarker = L.icon({
     iconUrl: 'img/maps-and-location.svg',
 
@@ -33,34 +26,66 @@ var pawMarker = L.icon({
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
-//Markers
-var marka1=L.marker([31.771959, 35.217018],{icon:pawMarker}).addTo(mymap).bindPopup("HAhaha")
+var mapLocation = L.icon({
+  iconUrl: 'img/Location.svg',
 
-//var marka1=L.marker([31.771959, 36.217018]).addTo(mymap).bindPopup("HAhaha")
-//Zoom Button
-var btna=document.querySelector('.btnZoomOut');
-
-var zoomTo=()=> {mymap.setView([31.771959, 35.217018], 8)};
-    
-btna.addEventListener("click",zoomTo);
-
+  iconSize:     [45, 58], // size of the icon //32, 37
+  
+  iconAnchor:   [16, 37], // point of the icon which will correspond to marker's location
+  
+  popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+///////////////////////////////
 
 
 
 
  //Adding GeoJson file to Map
-//  var formControl=document.querySelector(".form-control")
-//  var geoJsonLayer= new L.GeoJSON.AJAX('data/attractions.geojson',{pointToLayer:
-//     function(feature,latlng) {
-//     //str=Pop up    
-//     var str="<h5>"+feature.properties.Name+"</h5><hr>";
-//     str+="<h2>"+feature.properties.info+"</h2>";
-//     //Add to selectoptions
-//     formControl.innerHTML+=`<option value="${feature.geometry.coordinates}">${feature.properties.Name}</option>`;
+var geoJsonLayer= new L.GeoJSON.AJAX('data/attractions.geojson',{pointToLayer:
+  function(feature,latlng) {
+  //str=Pop up    
+  var str="<h4>"+feature.properties.Name+"</h4><hr>";
+  //str+=`<p>${latlng}</p>`
+  str+="<h2>"+feature.properties.info+"</h2>";
+  str+=`<button onclick="checkValueNotEmpty()">Route</button>`;
+  str+=`<a href="https://www.waze.com/he/livemap/directions?latlng=31.9641209%2C34.7983334&utm_expid=.KK1RTwPqS-qZm6T6gtvv1A.0&utm_referrer=">Waze Me</a>`
+
+  //Add to selectoptions
+  //formControl.innerHTML+=`<option value="${feature.geometry.coordinates}">${feature.properties.Name}</option>`;
+  
+  return L.marker(latlng,{icon:pawMarker}).bindPopup(str).on('click', lats);
+  }
+ }).addTo(mymap);
+
+
+
+ 
+
+ var marka1=L.marker([31.771959, 35.217018],{icon:pawMarker}).addTo(mymap).bindPopup("HAhaha")
+// var marka1=L.marker([31.751959, 35.217018],{icon:pawMarker}).addTo(mymap).bindPopup("HAhaha")
+
+
+
+
+//Markers
+// //////var marka1=L.marker([31.771959, 35.217018],{icon:pawMarker}).addTo(mymap).bindPopup("HAdfdfdha")
+
+//var marka2=L.marker([31.771959, 36.217018],{icon:pawMarker}).addTo(mymap).bindPopup("HAhaha")
+
+//Zoom Button
+var btnA=document.querySelector('.btnZoomOut');
+
+var zoomTo=()=> {
+  if (marker != null){
+    mymap.removeLayer(marker)
+  }
+  mymap.setView([31.771959, 35.217018], 8)
+  removeRoutingControl();
+
+};
     
-//     return L.marker(latlng,{icon:pawMarker}).bindPopup(str);
-//     }
-// }).addTo(mymap);
+btnA.addEventListener("click",zoomTo);
+
 
 
 
@@ -1496,10 +1521,13 @@ var jsonData=[
       "Y": 32.5209351
     }
   ]
+
+//Table Build
 function buildTable(dataJ){
     for(var i=0;i<dataJ.length;i++){
         //var str="<h5>"+feature.properties.Name+"</h5><hr>"; 
         formControl.innerHTML+=`<option style="text-align:center;" value="${dataJ[i].X+","+dataJ[i].Y}">${dataJ[i].Name}</option>`; 
+        
     }
 }
 buildTable(jsonData);
@@ -1514,10 +1542,75 @@ $('.select2').select2({
 });
 $('.select2').val(null).trigger('change');
 
+
 function doSomething(){
+    if (marker != null){
+      mymap.removeLayer(marker)
+    }
+    
     var coordinatesArr=formControl.value.split(',');
     var lat_a=parseFloat(coordinatesArr[0]);
     var lng_a=parseFloat(coordinatesArr[1]);
-    mymap.setView([lng_a,lat_a], 14);
+    mymap.setView([lng_a,lat_a], 10);
+
+    marker=new L.marker([lng_a,lat_a],{icon:mapLocation})
+    mymap.addLayer(marker)
+
 };
 
+
+
+
+//////////////////////////////////Routing//////////////////////////////////////
+
+//Get lats
+var latsxy
+function lats(e) {
+  latsxy=this.getLatLng();
+  console.log(latsxy)
+  
+}
+
+var routingControl
+function checkValueNotEmpty(){
+  // console.log(formControl.value)
+  if(!formControl.value){
+      alert("על מנת לקבל מסלול אנא בחר עיר מגורים");
+  }
+  else{
+    runRoute();
+  }
+}
+function runRoute(){
+  removeRoutingControl();
+///Point A
+  var coordinatesArr=formControl.value.split(',');
+  var lat_a=parseFloat(coordinatesArr[0]);
+  var lng_a=parseFloat(coordinatesArr[1]);
+  
+//Point B
+  routingControl=L.Routing.control({
+    waypoints: [
+      L.latLng(lng_a,lat_a),
+      L.latLng(latsxy.lat, latsxy.lng)
+    ],
+    collapsible:true,
+    totalDistanceRoundingSensitivity:2,
+    summaryTemplate:'<h2 class="routeName">{name}</h2><h2 class="routeName">{distance}, {time}</h2>',
+    itineraryClassName:'route'
+  }).addTo(mymap);
+}
+
+function removeRoutingControl() {
+  if (routingControl != null) {
+      mymap.removeControl(routingControl);
+      routingControl = null;
+  }
+};
+
+mymap.on('click', function(e) {        
+  if (routingControl != null) {
+    mymap.removeControl(routingControl);
+    routingControl = null;
+}
+});
