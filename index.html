@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
         <!-- Bootstrap-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -61,22 +62,26 @@
         <div class="mainContainer">
 
             
-
-            <!-- <div id="header" class="container">
-                <h1 class="d-flex justify-content-center animate__animated animate__fadeInDown">Adopt Me#</h1>
-            </div> -->
-             
             <div id="header">
-                <!-- <img id="logo" 
-                src="/GIS/img/CineLocator_Logo.svg" alt=""> -->
+                <img id="logo" 
+                src="/GIS/img/default-monochrome.svg" class="rounded mx-auto d-block" alt="" >
+                
             </div>
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                  
+                  <p class="lead"><p >פרוייקט אימוץ חיות בישראל</p></p>
+                 אתר זה מאגד בעלי עסק ועמותות בישראל בהם ניתן לאמץ חיות
+                 <p>ניתן לבצע חיפוש במפה או לבצע חיפוש בסביבת עיר מגוריכם</p>
+                </div>
+              </div>
                     
             <div id="functionality"class="container">
                 <div class="row justify-content-center">
                     
                     <form class="col-12  maxi d-flex justify-content-center "> <!--col-5  maxi d-flex justify-content-center-->
                     
-                        <select id="searchBox" class="form-control select2" onchange="doSomething()" >
+                        <select id="searchBox" class="form-control select2" onchange="clearAll()" >
                         
                         
                         </select>
@@ -86,7 +91,7 @@
                     
                 </div> 
                 <div class="row justify-content-center">
-                    <button class='btn btn-outline-dark btn-sm btnZoomOut'>Zoom Out</button>     
+                    <button class='btn btn-outline-light btn-sm btnZoomOut'>Zoom Out</button>     
                 </div>
             </div>
 

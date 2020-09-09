@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "attractions3",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": null, "Name": "אריאלה - חנות חיות עם אהבה", "Logo": "https:\/\/scontent.ftlv16-1.fna.fbcdn.net\/v\/t1.0-9\/21616356_1558788434143107_3237533741222350148_n.png?_nc_cat=102&_nc_sid=09cbfe&_nc_ohc=iXGw5FYhkAEAX9rMwwb&_nc_ht=scontent.ftlv16-1.fna&oh=1cb83e2702e1ea4b81cddd433e005e20&oe=5F8085DE", "City": "ראשון לציון", "Address": "ברשבסקי 7", "Hours": "\nימים א' - ה': 9:00 - 21:00", "FbURL": "https:\/\/www.facebook.com\/ariela.pets", "WebURL": "https:\/\/ariela-pets.co.il\/", "Phone": "03-6206208", "Waze": "https:\/\/www.waze.com\/he\/livemap\/directions?latlng=31.9742386%2C34.8097708&utm_expid=.KK1RTwPqS-qZm6T6gtvv1A.0&utm_referrer=", "Additional": null }, "geometry": { "type": "Point", "coordinates": [ 34.809919871407473, 31.974244079975261 ] } },
+{ "type": "Feature", "properties": { "id": null, "Name": "yxy", "Logo": null, "City": null, "Address": null, "Hours": null, "FbURL": null, "WebURL": null, "Phone": null, "Waze": null, "Additional": null }, "geometry": { "type": "Point", "coordinates": [ 34.809374288050471, 31.974445015424713 ] } }
+]
+}

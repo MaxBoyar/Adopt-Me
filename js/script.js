@@ -19,7 +19,7 @@ mymap.on('mousemove',function(e){
 var pawMarker = L.icon({
     iconUrl: 'img/maps-and-location.svg',
 
-    iconSize:     [32, 37], // size of the icon
+    iconSize:     [28, 30], // size of the icon [32, 34]
     
     iconAnchor:   [16, 37], // point of the icon which will correspond to marker's location
     
@@ -41,15 +41,25 @@ var mapLocation = L.icon({
 
 
  //Adding GeoJson file to Map
-var geoJsonLayer= new L.GeoJSON.AJAX('data/attractions.geojson',{pointToLayer:
+var geoJsonLayer= new L.GeoJSON.AJAX('data/attractions4.geojson',{pointToLayer:
   function(feature,latlng) {
-  //str=Pop up    
-  var str="<h4>"+feature.properties.Name+"</h4><hr>";
-  //str+=`<p>${latlng}</p>`
-  str+="<h2>"+feature.properties.info+"</h2>";
-  str+=`<button onclick="checkValueNotEmpty()">Route</button>`;
-  str+=`<a href="https://www.waze.com/he/livemap/directions?latlng=31.9641209%2C34.7983334&utm_expid=.KK1RTwPqS-qZm6T6gtvv1A.0&utm_referrer=">Waze Me</a>`
-
+  var str=`<h4>${feature.properties.Name}</h4><hr>`;
+  str+=`<div class="compImage"><img src="${feature.properties.Logo}" alt="" width="100" height="100"></div>`
+  str+="<h5 style=text-align:center>"+feature.properties.City+"</h5>"
+  str+="<h5 style=text-align:center>"+feature.properties.Address+"</h5>"
+  str+="<h5 style=text-align:center>"+"שעות: "+feature.properties.Hours+"</h5>"
+  str+="<h5 style=text-align:center>"+feature.properties.Phone+"</h5>"
+  str+=`<div class="compIcons">
+  <a href="${feature.properties.Waze}" target="_blank" class="compIcon" ><img src="img/waze.svg" alt="" width="40" height="40"></a>
+  <a href="${feature.properties.FbURL}" target="_blank" class="compIcon" ><img src="img/facebook.svg" alt="" width="40" height="40"></a>
+  <a href="${feature.properties.WebURL}" target="_blank" class="compIcon" ><img src="img/www.svg" alt="" width="40" height="40"></a>
+  <button style="border:none;" onclick="checkValueNotEmpty()" class="compIcon" ><img src="img/route.svg" alt="" width="40" height="40"></a></button>
+  </div>`
+  // str+=`<a href="${feature.properties.Waze}"><img src="img/waze.svg" alt="" width="40" height="40"></a>`
+  // str+=`<a href="${feature.properties.FbURL}"><img src="img/facebook.svg" alt="" width="40" height="40"></a>`
+  // str+=`<a href="${feature.properties.WebURL}"><img src="img/www.svg" alt="" width="40" height="40"></a>`
+  // str+=`<button style="border:none;" onclick="checkValueNotEmpty()"><img src="img/route.svg" alt="" width="40" height="40"></a></button>`;
+  
   //Add to selectoptions
   //formControl.innerHTML+=`<option value="${feature.geometry.coordinates}">${feature.properties.Name}</option>`;
   
@@ -61,7 +71,7 @@ var geoJsonLayer= new L.GeoJSON.AJAX('data/attractions.geojson',{pointToLayer:
 
  
 
- var marka1=L.marker([31.771959, 35.217018],{icon:pawMarker}).addTo(mymap).bindPopup("HAhaha")
+ //var marka1=L.marker([31.771959, 35.217018],{icon:pawMarker}).addTo(mymap).bindPopup("HAhaha")
 // var marka1=L.marker([31.751959, 35.217018],{icon:pawMarker}).addTo(mymap).bindPopup("HAhaha")
 
 
@@ -1522,7 +1532,7 @@ var jsonData=[
     }
   ]
 
-//Table Build
+/////////////////////////////////////////////////Table Build
 function buildTable(dataJ){
     for(var i=0;i<dataJ.length;i++){
         //var str="<h5>"+feature.properties.Name+"</h5><hr>"; 
@@ -1543,10 +1553,12 @@ $('.select2').select2({
 $('.select2').val(null).trigger('change');
 
 
-function doSomething(){
+function clearAll(){
     if (marker != null){
       mymap.removeLayer(marker)
     }
+
+    removeRoutingControl()//Remove Last Route if changed
     
     var coordinatesArr=formControl.value.split(',');
     var lat_a=parseFloat(coordinatesArr[0]);
@@ -1596,8 +1608,9 @@ function runRoute(){
     ],
     collapsible:true,
     totalDistanceRoundingSensitivity:2,
-    summaryTemplate:'<h2 class="routeName">{name}</h2><h2 class="routeName">{distance}, {time}</h2>',
-    itineraryClassName:'route'
+    summaryTemplate:'<h1 class="routeName">:מרחק וזמן נסיעה משוערים</h1><h2 class="routeName">{distance}, {time}</h2>',
+    itineraryClassName:'route',
+    createMarker: function() { return null; }
   }).addTo(mymap);
 }
 

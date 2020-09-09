@@ -3,7 +3,6 @@
 "name": "attractions",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
-{ "type": "Feature", "properties": { "id": 1, "Name": "גבעות", "info": "כלום" }, "geometry": { "type": "Point", "coordinates": [ 35.101284241601853, 31.679156368981012 ] } },
-{ "type": "Feature", "properties": { "id": 2, "Name": "ראש צורים", "info": null }, "geometry": { "type": "Point", "coordinates": [ 35.126003795820637, 31.667563248730211 ] } }
+{ "type": "Feature", "properties": { "id": null, "Name": "אריאלה - חנות חיות עם אהבה", "Logo": "https:\/\/ariela-pets.co.il\/wp-content\/uploads\/2020\/03\/logo.png", "City": "ראשון לציון", "Address": "ברשבסקי 7", "Hours": "\nימים א' - ה': 9:00 - 21:00", "FbURL": "https:\/\/www.facebook.com\/ariela.pets", "WebURL": "https:\/\/ariela-pets.co.il\/", "Phone": "03-6206208", "Waze": "https:\/\/www.waze.com\/he\/livemap\/directions?latlng=31.9742386%2C34.8097708&utm_expid=.KK1RTwPqS-qZm6T6gtvv1A.0&utm_referrer=", "Additional": null }, "geometry": { "type": "Point", "coordinates": [ 34.809919871407473, 31.974244079975261 ] } }
 ]
 }
