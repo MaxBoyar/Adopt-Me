@@ -85,17 +85,14 @@ font-size: 9vw;
 color: white;
 background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%, rgba(0,212,255,1) 100%);
 } */
-.logox{
+/* .logox{
     
         
         max-width: 100%;
             max-height: 100vh;
             margin: auto;
     
-}
-#logo{
-
-}
+} */
 #header{
     width: 50vw; 
     margin: 0 auto;
@@ -183,6 +180,12 @@ h6{
 }
 
 .compIcon{
-    margin-right: 1vh;
+    display: flex;
+    justify-content:center; 
+    margin-right: 2vh;
     
+}
+
+option{
+    text-align: center;
 }

@@ -6,6 +6,7 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                    //other attributes.
 }).addTo(mymap);
 var marker;
+var circle;
 
 
 
@@ -27,9 +28,9 @@ var pawMarker = L.icon({
 });
 
 var mapLocation = L.icon({
-  iconUrl: 'img/Location.svg',
+  iconUrl: 'img/geo.svg',
 
-  iconSize:     [45, 58], // size of the icon //32, 37
+  iconSize:     [40, 50], // size of the icon //32, 37
   
   iconAnchor:   [16, 37], // point of the icon which will correspond to marker's location
   
@@ -91,6 +92,8 @@ var zoomTo=()=> {
   }
   mymap.setView([31.771959, 35.217018], 8)
   removeRoutingControl();
+  console.log("lol")
+  $('.select2').val(null).trigger('change');
 
 };
     
@@ -1536,20 +1539,23 @@ var jsonData=[
 function buildTable(dataJ){
     for(var i=0;i<dataJ.length;i++){
         //var str="<h5>"+feature.properties.Name+"</h5><hr>"; 
-        formControl.innerHTML+=`<option style="text-align:center;" value="${dataJ[i].X+","+dataJ[i].Y}">${dataJ[i].Name}</option>`; 
+        formControl.innerHTML+=`<option style="text-align:center;"  value="${dataJ[i].X+","+dataJ[i].Y}">${dataJ[i].Name}</option>`; 
         
     }
 }
 buildTable(jsonData);
 
-
+//maximizeSelect2Height()
 $('.select2').select2({
     
-    dir: "rtl" ,
-    placeholder: "בחר עיר מגורים"
+  dir: "rtl" ,
+  placeholder: "בחר עיר מגורים"
+    
     
     
 });
+
+
 $('.select2').val(null).trigger('change');
 
 
@@ -1558,8 +1564,12 @@ function clearAll(){
       mymap.removeLayer(marker)
     }
 
+    if (circle != null){
+      mymap.removeLayer(circle)
+    }
+
     removeRoutingControl()//Remove Last Route if changed
-    
+    var radius=25000;//50 Kilometers
     var coordinatesArr=formControl.value.split(',');
     var lat_a=parseFloat(coordinatesArr[0]);
     var lng_a=parseFloat(coordinatesArr[1]);
@@ -1567,6 +1577,7 @@ function clearAll(){
 
     marker=new L.marker([lng_a,lat_a],{icon:mapLocation})
     mymap.addLayer(marker)
+    circle=L.circle([lng_a,lat_a], radius).addTo(mymap);
 
 };
 
