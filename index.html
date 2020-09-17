@@ -50,8 +50,11 @@
 
         <!--Leaflet Ajax-for GEOJson-->
         <script src="resources/leaflet.ajax.js"></script>
-
-      
+        <!-- popup -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script src="sweetalert2.all.min.js"></script>
+        <script src="sweetalert2.min.js"></script>
+        <link rel="stylesheet" href="sweetalert2.min.css">      
 
         <!-- My css-->
         <link rel="stylesheet" href="css/style.css">
@@ -89,7 +92,7 @@
                     
                     <form class="col-12  maxi d-flex justify-content-center "> <!--col-5  maxi d-flex justify-content-center-->
                     
-                        <select id="searchBox" class="form-control select2"  onchange="clearAll()" >
+                        <select id="searchBox" class="form-control select2"  onchange="setZoom()" >
                         
                         
                         </select>
@@ -102,6 +105,8 @@
                     <button class='btn btn-outline-light btn-sm btnZoomOut'>Zoom Out</button>     
                 </div>
             </div>
+            
+          
 
             <div id="mapid"> </div>   
             <div class="container d-flex justify-content-center">
@@ -114,7 +119,7 @@
 
 
             </div>
-            
+        
 
 
             
