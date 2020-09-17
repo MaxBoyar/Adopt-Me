@@ -10,7 +10,7 @@
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
+var changer=0
 
 // function getData(){
 //   firebase.database().ref('places/features').once('value',function(snapshot){
@@ -33,7 +33,7 @@ firebase.initializeApp(firebaseConfig);
  
  
  //////////////////////////////////Adding Map///////////////
- mymap = L.map('mapid', { dragging: !L.Browser.mobile }).setView([31.771959, 35.217018], 8);
+ mymap = L.map('mapid').setView([31.771959, 35.217018], 8); //, { dragging: !L.Browser.mobile }
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributor', 
                    
@@ -1602,7 +1602,10 @@ $('.select2').select2({
 $('.select2').val(null).trigger('change');
 
 //function zoom to choosen city
+
 function setZoom(){
+    
+
     if (marker != null){
       mymap.removeLayer(marker)
     }
@@ -1610,23 +1613,31 @@ function setZoom(){
     if (circle != null){
       mymap.removeLayer(circle)
     }
-
+    
     removeRoutingControl()//Remove Last Route if changed
     var radius=25000;//50 Kilometers
     var coordinatesArr=formControl.value.split(',');
     var lat_a=parseFloat(coordinatesArr[0]);
     var lng_a=parseFloat(coordinatesArr[1]);
     mymap.setView([lng_a,lat_a], 10);
-
+    
     marker=new L.marker([lng_a,lat_a],{icon:mapLocation})
     mymap.addLayer(marker)
     circle=L.circle([lng_a,lat_a], radius).addTo(mymap);
-    Swal.fire({
-      title: '!שים לב',
-      text: 'כל המקומות בתוך הרדיוס הכחול הם בטווח נסיעה של חצי שעה בממוצע ממקום מגוריך',
-      icon: 'info',
-      confirmButtonText: 'Cool'
-    })
+    if (changer <= 1){
+      
+      Swal.fire({
+        title: '!שימו לב',
+        text: 'כל המקומות בתוך הרדיוס הכחול הם בטווח נסיעה של חצי שעה בממוצע מעיר מגוריכם',
+        icon: 'info',
+        confirmButtonText: 'אישור'
+      })
+    }
+    changer++;
+    
+  
+    
+    
 
 };
 
@@ -1675,10 +1686,17 @@ function runRoute(){
 }
 
 function removeRoutingControl() {
-  if (routingControl != null) {
-      mymap.removeControl(routingControl);
-      routingControl = null;
+  try {
+    
+      mymap.removeControl(routingControl)
+      routingControl = null
   }
+  catch(err) {
+    console.log("No lats")
+  }
+ 
+  
+  
 };
 
 mymap.on('click', function(e) {        

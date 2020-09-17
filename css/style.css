@@ -59,7 +59,7 @@ body {
 @media (max-width: 800px) {
     #mapid {
         height: 85vh;
-        width: 105%;
+        width: 100%;
         
     }
 }
@@ -190,7 +190,7 @@ option{
     text-align: center;
 }
 
-.testing{
+.topInfo_whitebox{
     background:rgba(255, 255, 255, 0.2);
     text-align: center;
     padding-top: 1vh;
