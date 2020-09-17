@@ -1,5 +1,39 @@
- //Adding Map
- mymap = L.map('mapid').setView([31.771959, 35.217018], 8);
+ // Your web app's Firebase configuration
+ var firebaseConfig = {
+  apiKey: "AIzaSyD9dOZhcsCMCZoXscAdeCOkWF84iWZXwAI",
+  authDomain: "adopt-me-3d1c1.firebaseapp.com",
+  databaseURL: "https://adopt-me-3d1c1.firebaseio.com",
+  projectId: "adopt-me-3d1c1",
+  storageBucket: "adopt-me-3d1c1.appspot.com",
+  messagingSenderId: "820650895820",
+  appId: "1:820650895820:web:9694cfae3c3418b84e1569"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+
+// function getData(){
+//   firebase.database().ref('places/features').once('value',function(snapshot){
+//     snapshot.forEach(function(childSnapshot)
+//     {
+//       var childData=childSnapshot.val();
+//       var child=childSnapshot.key;
+//       console.log(childData.properties.City)
+//       console.log(child.geometry)
+//       // var childKey=childSnapshot.key;
+//       // var childData=childSnapshot.val();
+//       // option1.innerHTML+=`<option style="text-align:center;"  value="1">${childData['Name']}</option>`;
+//     })
+//   })
+// }
+// getData();
+
+
+ 
+ 
+ 
+ //////////////////////////////////Adding Map///////////////
+ mymap = L.map('mapid', { dragging: !L.Browser.mobile }).setView([31.771959, 35.217018], 8);
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributor', 
                    
@@ -10,13 +44,13 @@ var circle;
 
 
 
-//Map cordinations
+//////////////////Map cordinations visualization///////////
 mymap.on('mousemove',function(e){
     var str="latitude:"+e.latlng.lat.toFixed(5) + " Longitude: "+e.latlng.lng.toFixed(5)+ " Zoom Level: "+mymap.getZoom();
    document.querySelector("#map_cords").innerHTML=str;
 });
 
-//Adding markers SVG
+/////////////Adding markers SVG
 var pawMarker = L.icon({
     iconUrl: 'img/maps-and-location.svg',
 
@@ -41,46 +75,59 @@ var mapLocation = L.icon({
 
 
 
- //Adding GeoJson file to Map
-var geoJsonLayer= new L.GeoJSON.AJAX('data/attractions4.geojson',{pointToLayer:
-  function(feature,latlng) {
-  var str=`<h4>${feature.properties.Name}</h4><hr>`;
-  str+=`<div class="compImage"><img src="${feature.properties.Logo}" alt="" width="100" height="100"></div>`
-  str+="<h5 style=text-align:center>"+feature.properties.City+"</h5>"
-  str+="<h5 style=text-align:center>"+feature.properties.Address+"</h5>"
-  str+="<h5 style=text-align:center>"+"שעות: "+feature.properties.Hours+"</h5>"
-  str+="<h5 style=text-align:center>"+feature.properties.Phone+"</h5>"
-  str+=`<div class="compIcons">
-  <a href="${feature.properties.Waze}" target="_blank" class="compIcon" ><img src="img/waze.svg" alt="" width="40" height="40"></a>
-  <a href="${feature.properties.FbURL}" target="_blank" class="compIcon" ><img src="img/facebook.svg" alt="" width="40" height="40"></a>
-  <a href="${feature.properties.WebURL}" target="_blank" class="compIcon" ><img src="img/www.svg" alt="" width="40" height="40"></a>
-  <button style="border:none;" onclick="checkValueNotEmpty()" class="compIcon" ><img src="img/route.svg" alt="" width="40" height="40"></a></button>
-  </div>`
-  // str+=`<a href="${feature.properties.Waze}"><img src="img/waze.svg" alt="" width="40" height="40"></a>`
-  // str+=`<a href="${feature.properties.FbURL}"><img src="img/facebook.svg" alt="" width="40" height="40"></a>`
-  // str+=`<a href="${feature.properties.WebURL}"><img src="img/www.svg" alt="" width="40" height="40"></a>`
-  // str+=`<button style="border:none;" onclick="checkValueNotEmpty()"><img src="img/route.svg" alt="" width="40" height="40"></a></button>`;
-  
-  //Add to selectoptions
-  //formControl.innerHTML+=`<option value="${feature.geometry.coordinates}">${feature.properties.Name}</option>`;
-  
-  return L.marker(latlng,{icon:pawMarker}).bindPopup(str).on('click', lats);
-  }
- }).addTo(mymap);
+//  Adding GeoJson file to Map
+// var geoJsonLayer= new L.GeoJSON.AJAX('data/attractions4.geojson',{pointToLayer:
+//   function(feature,latlng) {
+//     console.log(latlng)
+//   var str=`<h4>${feature.properties.Name}</h4><hr>`;
+//   str+=`<div class="compImage"><img src="${feature.properties.Logo}" alt="" width="100" height="100"></div>`
+//   str+="<h5 style=text-align:center>"+feature.properties.City+"</h5>"
+//   str+="<h5 style=text-align:center>"+feature.properties.Address+"</h5>"
+//   str+="<h5 style=text-align:center>"+"שעות: "+feature.properties.Hours+"</h5>"
+//   str+="<h5 style=text-align:center>"+feature.properties.Phone+"</h5>"
+//   str+=`<div class="compIcons">
+//   <a href="${feature.properties.Waze}" target="_blank" class="compIcon" ><img src="img/waze.svg" alt="" width="40" height="40"></a>
+//   <a href="${feature.properties.FbURL}" target="_blank" class="compIcon" ><img src="img/facebook.svg" alt="" width="40" height="40"></a>
+//   <a href="${feature.properties.WebURL}" target="_blank" class="compIcon" ><img src="img/www.svg" alt="" width="40" height="40"></a>
+//   <button style="border:none;" onclick="checkValueNotEmpty()" class="compIcon" ><img src="img/route.svg" alt="" width="40" height="40"></a></button>
+//   </div>`
+//   return L.marker(latlng,{icon:pawMarker}).bindPopup(str).on('click', lats);
+//   }
+//  }).addTo(mymap);
 
+///////////////////////////////////////////////////////////////Adding data markers from DB/////////////////////////////////////////
+ function getData(){
+  firebase.database().ref('places/features').once('value',function(snapshot){
+    snapshot.forEach(function(childSnapshot)
+    {
+      var childData=childSnapshot.val();
+      var cords=childData.geometry.coordinates
+      var x=cords[1]     
+      var y=cords[0]  
+      
+      
+      var str=`<h4>${childData.properties.Name}</h4><hr>`;
+      str+=`<div class="compImage"><img src="${childData.properties.Logo}" alt="" width="100" height="100"></div>`
+      str+="<h5 style=text-align:center>"+childData.properties.City+"</h5>"
+      str+="<h5 style=text-align:center>"+childData.properties.Address+"</h5>"
+      str+="<h5 style=text-align:center>"+"שעות: "+childData.properties.Hours+"</h5>"
+      str+="<h5 style=text-align:center>"+childData.properties.Phone+"</h5>"
+      str+=`<div class="compIcons">
+      <a href="${childData.properties.Waze}" target="_blank" class="compIcon" ><img src="img/waze.svg" alt="" width="40" height="40"></a>
+      <a href="${childData.properties.FbURL}" target="_blank" class="compIcon" ><img src="img/facebook.svg" alt="" width="40" height="40"></a>
+      <a href="${childData.properties.WebURL}" target="_blank" class="compIcon" ><img src="img/www.svg" alt="" width="40" height="40"></a>
+      <button style="border:none;" onclick="checkValueNotEmpty()" class="compIcon" ><img src="img/route.svg" alt="" width="40" height="40"></a></button>
+      </div>`
+      L.marker([x,y],{icon:pawMarker}).bindPopup(str).on('click', lats).addTo(mymap);//lats is function that getting coordinates
+     
+    })  
+    
+  })
+}
+getData();
 
-
- 
-
- //var marka1=L.marker([31.771959, 35.217018],{icon:pawMarker}).addTo(mymap).bindPopup("HAhaha")
-// var marka1=L.marker([31.751959, 35.217018],{icon:pawMarker}).addTo(mymap).bindPopup("HAhaha")
-
-
-
-
-//Markers
+//Markers test
 // //////var marka1=L.marker([31.771959, 35.217018],{icon:pawMarker}).addTo(mymap).bindPopup("HAdfdfdha")
-
 //var marka2=L.marker([31.771959, 36.217018],{icon:pawMarker}).addTo(mymap).bindPopup("HAhaha")
 
 //Zoom Button
@@ -1590,7 +1637,7 @@ function clearAll(){
 var latsxy
 function lats(e) {
   latsxy=this.getLatLng();
-  console.log(latsxy)
+  //console.log(latsxy)
   
 }
 
