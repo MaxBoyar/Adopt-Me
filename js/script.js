@@ -29,7 +29,7 @@ firebase.initializeApp(firebaseConfig);
 // getData();
 
 
- 
+
  
  
  //////////////////////////////////Adding Map///////////////
@@ -130,10 +130,9 @@ getData();
 // //////var marka1=L.marker([31.771959, 35.217018],{icon:pawMarker}).addTo(mymap).bindPopup("HAdfdfdha")
 //var marka2=L.marker([31.771959, 36.217018],{icon:pawMarker}).addTo(mymap).bindPopup("HAhaha")
 
-//Zoom Button
+///////////////////////Zoom out button//////////
 var btnA=document.querySelector('.btnZoomOut');
-
-var zoomTo=()=> {
+var zoomTo=()=> { 
   if (marker != null){
     mymap.removeLayer(marker)
   }
@@ -141,9 +140,9 @@ var zoomTo=()=> {
   removeRoutingControl();
   console.log("lol")
   $('.select2').val(null).trigger('change');
+ 
 
 };
-    
 btnA.addEventListener("click",zoomTo);
 
 
@@ -1582,31 +1581,28 @@ var jsonData=[
     }
   ]
 
-/////////////////////////////////////////////////Table Build
+/////////////////////////////////////////////////Table Build////////////////////////////////////
 function buildTable(dataJ){
-    for(var i=0;i<dataJ.length;i++){
-        //var str="<h5>"+feature.properties.Name+"</h5><hr>"; 
+    for(var i=0;i<dataJ.length;i++){ 
         formControl.innerHTML+=`<option style="text-align:center;"  value="${dataJ[i].X+","+dataJ[i].Y}">${dataJ[i].Name}</option>`; 
         
     }
 }
 buildTable(jsonData);
 
-//maximizeSelect2Height()
+//intitialize select component
 $('.select2').select2({
     
   dir: "rtl" ,
   placeholder: "בחר עיר מגורים"
-    
-    
-    
+       
 });
 
 
 $('.select2').val(null).trigger('change');
 
-
-function clearAll(){
+//function zoom to choosen city
+function setZoom(){
     if (marker != null){
       mymap.removeLayer(marker)
     }
@@ -1625,6 +1621,12 @@ function clearAll(){
     marker=new L.marker([lng_a,lat_a],{icon:mapLocation})
     mymap.addLayer(marker)
     circle=L.circle([lng_a,lat_a], radius).addTo(mymap);
+    Swal.fire({
+      title: '!שים לב',
+      text: 'כל המקומות בתוך הרדיוס הכחול הם בטווח נסיעה של חצי שעה בממוצע ממקום מגוריך',
+      icon: 'info',
+      confirmButtonText: 'Cool'
+    })
 
 };
 
