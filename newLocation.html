@@ -57,7 +57,7 @@
         <link rel="stylesheet" href="sweetalert2.min.css">      
 
         <!-- My css-->
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/location.css">
 
         
     
@@ -92,28 +92,69 @@
                 <img id="logo" 
                 src="./img/default-monochrome.svg" class="rounded mx-auto d-block" alt="Logo" >
                 
-            </div>
 
             
-            <div class="topInfo_whitebox">
-                <div class="container">
-                  
-                  <p class="lead"><p >ברוכים הבאים לפרוייקט אימוץ חיות בישראל</p></p>
-                 אתר זה מאגד בעלי עסק ועמותות בישראל בהם ניתן לאמץ חיות
-                 <br>
-                 <img src="./img/paw.svg" alt="paw" width="50" height="50">
+            <div class="container Data">
+                <div class="row">
+                  <div class="col-sm">
+                    Address
+                      <input id="AddData">
+                  </div>
+                  <div class="col-sm">
+                    City
+                      <input id="CitData">
+                  </div>
+                  <div class="col-sm">
+                    Facebook
+                      <input id="FbData">
+                  </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col-sm">
+                      Hours
+                        <input id="HouData">
+                    </div>
+                    <div class="col-sm">
+                      Logo
+                        <input id="LogData">
+                    </div>
+                    <div class="col-sm">
+                      Name
+                        <input id="NamData">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm">
+                      Phone
+                        <input id="PhoData">
+                    </div>
+                    <div class="col-sm">
+                      Waze
+                        <input id="WazData">
+                    </div>
+                    <div class="col-sm">
+                      WebURL
+                        <input id="WebData">
+                    </div>
+                    <div class="col-sm">
+                        lat
+                          <input id="LatData">
+                      </div>
+                      <div class="col-sm">
+                        lng
+                          <input id="LngData">
+                      </div>
+                  </div>
+              </div> 
+            <div id="mapid"> </div>
             <div class="container">
                 <div class="row justify-content-center">
-                 
-                    <button type="button" class="btn btn-lg btn-outline-light" onclick="window.location.href='app.html'">למעבר לאפליקציה לחץ כאן<a href="add.html"></a> </button>
-                 </div> 
+                    <button type="button" class="btn btn-outline-light" onclick="test()">Test</button>
+                    <button type="button" class="btn btn-outline-light" onclick="Push()">Push</button>
+                </div> 
     
-            </div>
-             
-          
-              
+            </div>  
+            
             <div class="bottomx">
                 
                 <div class=" topper d-flex justify-content-center">
@@ -162,6 +203,6 @@
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/location.js"></script>
     </body>
 </html>

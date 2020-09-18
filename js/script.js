@@ -12,6 +12,31 @@
 firebase.initializeApp(firebaseConfig);
 var changer=0
 
+var dbRef = firebase.database().ref().child('places').child('features');
+    
+function addUser(){
+  dbRef.push({
+    geometry:{
+      coordinates:{
+        1:"31.7",
+        0:"35.9"
+      }
+    },
+    properties:{
+      Address:"Test",
+      City:"",
+      FbURL:"",
+      Hours:"",
+      Name:"",
+      Phone:"",
+      Waze:"",
+      WebURL:""
+
+    }
+  });
+}
+//addUser();
+
 // function getData(){
 //   firebase.database().ref('places/features').once('value',function(snapshot){
 //     snapshot.forEach(function(childSnapshot)

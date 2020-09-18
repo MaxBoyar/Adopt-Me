@@ -18,6 +18,33 @@ body {
 	/* filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#448ef6', endColorstr='#af05a9', GradientType=1 ); */
 }  
 
+ .mainContainer{
+    position: relative;
+    width: 100%;
+    height: 17vh;
+    background: linear-gradient(to right,rgb(90 0 56 / 40%),rgb(189 40 84 /50%));
+    /* background: linear-gradient(to right,rgb(56 250 255 / 73%),rgb(165 34 118)); */
+    /* background-color: rgb(0, 0, 0); */
+    box-sizing: border-box;
+    padding: 30px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 200px;
+  }
+.mainContainer:after{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: '';
+    background: inherit;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform-origin: top left;
+    transform: skewY(3deg); 
+    
+}
 
 
 #mapid{
@@ -31,8 +58,8 @@ body {
 }
 @media (max-width: 800px) {
     #mapid {
-        height:66vh;
-        width: 95%;
+        height: 85vh;
+        width: 100%;
         
     }
 }
@@ -170,4 +197,9 @@ option{
     padding-bottom: 1vh;
     margin-bottom: 1vh;
     color: white;
+}
+
+.Data{
+    margin-top:10vh;
+    color: lavender;
 }
