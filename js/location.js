@@ -72,8 +72,6 @@ function test(){
     
     
 }
-
-// Your web app's Firebase configuration
 var firebaseConfig = {
     apiKey: "AIzaSyD9dOZhcsCMCZoXscAdeCOkWF84iWZXwAI",
     authDomain: "adopt-me-3d1c1.firebaseapp.com",
@@ -82,10 +80,16 @@ var firebaseConfig = {
     storageBucket: "adopt-me-3d1c1.appspot.com",
     messagingSenderId: "820650895820",
     appId: "1:820650895820:web:9694cfae3c3418b84e1569"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-var dbRef = firebase.database().ref().child('places').child('features');
+  };
+  // Initialize Firebase
+  if(!firebase.apps.length){
+    
+    firebase.initializeApp(firebaseConfig);
+    var dbRef = firebase.database().ref().child('places').child('features');
+    var auth = firebase.auth();
+    
+  }
+  
 
 function Push(){
     var accept=confirm(" שים לב אם תלחץ אוקיי אז הנתונים ישלחו לדאטה בייס, האם אתה בטוח שהזנת ובדקת את כל הנתונים לפני? ,אם לא תלחץ על ביטול ");

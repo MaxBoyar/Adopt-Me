@@ -74,38 +74,34 @@
     <body>
         <div class="mainContainer">
 
-            <!-- Nav bar -->
-            <nav class="navbar navbar-expand-lg navbar-dark " style="float:right">
-                <a class="navbar-brand" href="#"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item" >
-                        <a class="nav-link logged-in" id="logout" href="" style="display:none;">יציאה</a>
+        <!-- Nav bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark " style="float:right">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item" >
+                    <a class="nav-link logged-in" id="logout" href="" style="display:none;">יציאה</a>
+                </li>
+                <li class="nav-item" >
+                    
+                    <a  class="nav-link logged-out" href="login.html" style="display:none;">התחבר</a>
+                </li>
+                <li class="nav-item" >
+                    <a class="nav-link logged-in" href="newLocation.html"  style="display:none;">הוסף מיקום חדש</a>
+                </li>
+                <li class="nav-item" >
+                    <a class="nav-link " href="app.html" >מפה</a>
                     </li>
-                    <li class="nav-item" >
-                        
-                        <a  class="nav-link logged-out" href="login.html" style="display:none;">התחבר</a>
-                    </li>
-                    <li class="nav-item" >
-                        <a class="nav-link logged-in" href="newLocation.html"  style="display:none;">הוסף מיקום חדש</a>
-                    </li>
-                    <li class="nav-item" >
-                        <a class="nav-link " href="app.html" >מפה</a>
-                        </li>
-                    <li class="nav-item " >
-                    <a class="nav-link " href="index.html" >ברוכים הבאים <span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
-                </div>
-            </nav>
+                <li class="nav-item " >
+                <a class="nav-link " href="index.html" >ברוכים הבאים <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            </div>
+        </nav>
 
-          
-            
-         
-            
             <!-- Logo -->
             <div id="header">
                 <img id="logo" 
@@ -113,28 +109,51 @@
                 
             </div>
 
+            <div class="container login_window">
+                <div class="d-flex justify-content-center h-100">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 style="text-align: center;">התחברות לניהול</h3>
+                            <div class="d-flex justify-content-end social_icon">
+                                <span><i class="fab fa-facebook-square"></i></span>
+                                <span><i class="fab fa-google-plus-square"></i></span>
+                                <span><i class="fab fa-twitter-square"></i></span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form id="login-form">
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" id="user" placeholder="אימייל">
+                                    
+                                </div>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" id="pass" placeholder="סיסמה">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="submit" value="התחבר" class="btn login_btn">
+                                </div>
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+         
+            
+            
+
        
 
          
-            <!-- White box info -->
-            <div class="topInfo_whitebox">
-                <div class="container">
-                  
-                  <p class="lead"><p >ברוכים הבאים לפרוייקט אימוץ חיות בישראל</p></p>
-                 אתר זה מאגד בעלי עסק ועמותות בישראל בהם ניתן לאמץ חיות
-                 <br>
-                 <img src="./img/paw.svg" alt="paw" width="50" height="50">
-                </div>
-            </div>
-
-            <!-- Wellcome -->
-            <div class="container">
-                <div class="row justify-content-center">
-                 
-                    <button type="button" class="btn btn-lg btn-outline-light" onclick="window.location.href='app.html'">למעבר לאפליקציה לחץ כאן<a href="app.html"></a> </button>
-                 </div> 
-    
-            </div>
+            
              
           
             <!-- Credits   -->
@@ -182,11 +201,15 @@
 
             
         </div>
+    
+
+
+
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
-    <script type="text/javascript" src="js/auth.js"></script>    
+    <script type="text/javascript" src="js/auth.js"></script>
 
     </body>
 </html>

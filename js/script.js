@@ -1,4 +1,6 @@
- // Your web app's Firebase configuration
+var changer=0
+console.log("script")
+// Your web app's Firebase configuration
  var firebaseConfig = {
   apiKey: "AIzaSyD9dOZhcsCMCZoXscAdeCOkWF84iWZXwAI",
   authDomain: "adopt-me-3d1c1.firebaseapp.com",
@@ -9,33 +11,37 @@
   appId: "1:820650895820:web:9694cfae3c3418b84e1569"
 };
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-var changer=0
-
-var dbRef = firebase.database().ref().child('places').child('features');
-    
-function addUser(){
-  dbRef.push({
-    geometry:{
-      coordinates:{
-        1:"31.7",
-        0:"35.9"
-      }
-    },
-    properties:{
-      Address:"Test",
-      City:"",
-      FbURL:"",
-      Hours:"",
-      Name:"",
-      Phone:"",
-      Waze:"",
-      WebURL:""
-
-    }
-  });
+if(!firebase.apps.length){
+  
+  firebase.initializeApp(firebaseConfig);
+  var dbRef = firebase.database().ref().child('places').child('features');
+  var auth = firebase.auth();  
 }
-//addUser();
+
+//////////////////////////////#conditional menu
+if (!loggedIn){
+  var loggedIn=document.querySelectorAll('.logged-in');
+  var loggedOut=document.querySelectorAll('.logged-out');  
+
+}
+var loggedIn=document.querySelectorAll('.logged-in');
+  var loggedOut=document.querySelectorAll('.logged-out');  
+const setupUI=(user) =>{
+  if (user){
+    console.log('setup ui')
+    loggedIn.forEach(item=> item.style.display="block");
+    loggedOut.forEach(item=> item.style.display="none");
+  }
+  else{
+    console.log('no setup ui')
+    loggedIn.forEach(item=> item.style.display="none");
+    
+    loggedOut.forEach(item=> item.style.display="block");
+    
+
+  }
+}
+
 
 // function getData(){
 //   firebase.database().ref('places/features').once('value',function(snapshot){
