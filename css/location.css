@@ -179,12 +179,7 @@ h6{
     
 }
 
-.compIcon{
-    display: flex;
-    justify-content:center; 
-    margin-right: 2vh;
-    
-}
+
 
 option{
     text-align: center;
@@ -200,6 +195,14 @@ option{
 }
 
 .Data{
-    margin-top:10vh;
+    margin-top:4vh;
     color: lavender;
 }
+ .buttons{
+    margin-top:1vh;
+    
+ }
+
+ .btn{
+    margin-left: 1vh;
+ }

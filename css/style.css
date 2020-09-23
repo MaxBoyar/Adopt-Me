@@ -48,11 +48,11 @@ body {
 
 
 #mapid{
-    height: 50vh;
+    height: 72vh;
     border-radius: 10px;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
+    width: 90%;
     background-color:black ;
     border: 2px solid rgba(181,178,255,1);
 }

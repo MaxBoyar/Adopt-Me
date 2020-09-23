@@ -1,3 +1,4 @@
+
 var changer=0
 console.log("script")
 // Your web app's Firebase configuration
@@ -127,6 +128,7 @@ var mapLocation = L.icon({
 //  }).addTo(mymap);
 
 ///////////////////////////////////////////////////////////////Adding data markers from DB/////////////////////////////////////////
+
  function getData(){
   firebase.database().ref('places/features').once('value',function(snapshot){
     snapshot.forEach(function(childSnapshot)
@@ -143,11 +145,16 @@ var mapLocation = L.icon({
       str+="<h5 style=text-align:center>"+childData.properties.Address+"</h5>"
       str+="<h5 style=text-align:center>"+"שעות: "+childData.properties.Hours+"</h5>"
       str+="<h5 style=text-align:center>"+childData.properties.Phone+"</h5>"
+      
+      str+=`<div class="col-md-12 text-center">
+      <button style="text-align:center; margin-bottom: 1vh;margin-left:1vh;" onclick="checkValueNotEmpty()" class="compIcon btn btn-info" >הצג זמן נסיעה ומסלול משוערים</a></button>
+      
+      </div>`
       str+=`<div class="compIcons">
       <a href="${childData.properties.Waze}" target="_blank" class="compIcon" ><img src="img/waze.svg" alt="" width="40" height="40"></a>
       <a href="${childData.properties.FbURL}" target="_blank" class="compIcon" ><img src="img/facebook.svg" alt="" width="40" height="40"></a>
       <a href="${childData.properties.WebURL}" target="_blank" class="compIcon" ><img src="img/www.svg" alt="" width="40" height="40"></a>
-      <button style="border:none;" onclick="checkValueNotEmpty()" class="compIcon" ><img src="img/route.svg" alt="" width="40" height="40"></a></button>
+      
       </div>`
       L.marker([x,y],{icon:pawMarker}).bindPopup(str).on('click', lats).addTo(mymap);//lats is function that getting coordinates
      
