@@ -58,12 +58,14 @@ function test(){
         str+="<h5 style=text-align:center>"+address+"</h5>"
         str+="<h5 style=text-align:center>"+"שעות: "+hours+"</h5>"
         str+="<h5 style=text-align:center>"+phone+"</h5>"
+        
+        str+=`<div class="col-md-12 text-center">
+        <button style="text-align:center; margin-bottom: 1vh;margin-left:1vh;" onclick="checkValueNotEmpty()" class="compIcon btn btn-info" >הצג זמן נסיעה ומסלול משוערים</a></button>
+        </div>`  
         str+=`<div class="compIcons">
         <a href="${waze}" target="_blank" class="compIcon" ><img src="img/waze.svg" alt="" width="40" height="40"></a>
         <a href="${facebook}" target="_blank" class="compIcon" ><img src="img/facebook.svg" alt="" width="40" height="40"></a>
-        <a href="${web}" target="_blank" class="compIcon" ><img src="img/www.svg" alt="" width="40" height="40"></a>
-        <button style="border:none;" onclick="checkValueNotEmpty()" class="compIcon" ><img src="img/route.svg" alt="" width="40" height="40"></a></button>
-        </div>`
+        <a href="${web}" target="_blank" class="compIcon" ><img src="img/www.svg" alt="" width="40" height="40"></a></div>`
         marker= L.marker([x,y],{icon:pawMarker}).bindPopup(str).addTo(mymap);//lats is function that getting coordinates
     }
     else{
@@ -92,9 +94,8 @@ var firebaseConfig = {
   
 
 function Push(){
-    var accept=confirm(" שים לב אם תלחץ אוקיי אז הנתונים ישלחו לדאטה בייס, האם אתה בטוח שהזנת ובדקת את כל הנתונים לפני?,אם לא תלחץ על ביטול ");
+    var accept=confirm(" שים לב אם תלחץ אוקיי הנתונים ישלחו אל מאגר הנתונים, האם אתה בטוח שהזנת ובדקת את כל הנתונים לפני?,אם לא תלחץ על ביטול ");
     if (accept ==true){
-        alert("הנתונים נשלחו בהצלחה למאגר הנתונים");
         dbRef.push({
             geometry:{
             coordinates:{
@@ -115,6 +116,10 @@ function Push(){
     
             }
         });
+        alert('הנתונים נשלחו בהצלחה אל מאגר המידע');
+        location.reload();
+        
+        
     }
     else{
         return

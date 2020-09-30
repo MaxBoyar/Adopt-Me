@@ -19,29 +19,29 @@ if(!firebase.apps.length){
   var auth = firebase.auth();  
 }
 
-//////////////////////////////#conditional menu
-if (!loggedIn){
-  var loggedIn=document.querySelectorAll('.logged-in');
-  var loggedOut=document.querySelectorAll('.logged-out');  
+// //////////////////////////////#conditional menu
+// if (!loggedIn){
+//   var loggedIn=document.querySelectorAll('.logged-in');
+//   var loggedOut=document.querySelectorAll('.logged-out');  
 
-}
-var loggedIn=document.querySelectorAll('.logged-in');
-  var loggedOut=document.querySelectorAll('.logged-out');  
-const setupUI=(user) =>{
-  if (user){
-    console.log('setup ui')
-    loggedIn.forEach(item=> item.style.display="block");
-    loggedOut.forEach(item=> item.style.display="none");
-  }
-  else{
-    console.log('no setup ui')
-    loggedIn.forEach(item=> item.style.display="none");
+// }
+// //var loggedIn=document.querySelectorAll('.logged-in');
+// //var loggedOut=document.querySelectorAll('.logged-out');  
+// const setupUI=(user) =>{
+//   if (user){
+//     console.log('setup ui')
+//     loggedIn.forEach(item=> item.style.display="block");
+//     loggedOut.forEach(item=> item.style.display="none");
+//   }
+//   else{
+//     console.log('no setup ui')
+//     loggedIn.forEach(item=> item.style.display="none");
     
-    loggedOut.forEach(item=> item.style.display="block");
+//     loggedOut.forEach(item=> item.style.display="block");
     
 
-  }
-}
+//   }
+// }
 
 
 // function getData(){
@@ -176,7 +176,6 @@ var zoomTo=()=> {
   }
   mymap.setView([31.771959, 35.217018], 8)
   removeRoutingControl();
-  console.log("lol")
   $('.select2').val(null).trigger('change');
  
 
@@ -1696,7 +1695,12 @@ var routingControl
 function checkValueNotEmpty(){
   // console.log(formControl.value)
   if(!formControl.value){
-      alert("על מנת לקבל מסלול אנא בחר עיר מגורים");
+      
+      Swal.fire({
+        title: 'על מנת לקבל מסלול יש לבחור עיר מגורים',
+        icon: 'info',
+        confirmButtonText: 'אישור'
+      })
   }
   else{
     runRoute();

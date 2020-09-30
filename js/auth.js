@@ -18,6 +18,29 @@ if(!firebase.apps.length){
   
 }
 
+//////////////////////////////#conditional menu //25/09
+if (!loggedIn){
+  var loggedIn=document.querySelectorAll('.logged-in');
+  var loggedOut=document.querySelectorAll('.logged-out');  
+
+}
+//var loggedIn=document.querySelectorAll('.logged-in');
+//var loggedOut=document.querySelectorAll('.logged-out');  
+const setupUI=(user) =>{
+  if (user){
+    console.log('setup ui')
+    loggedIn.forEach(item=> item.style.display="block");
+    loggedOut.forEach(item=> item.style.display="none");
+  }
+  else{
+    console.log('no setup ui')
+    loggedIn.forEach(item=> item.style.display="none");
+    
+    loggedOut.forEach(item=> item.style.display="block");
+    
+
+  }
+}
 
 
 
@@ -42,7 +65,13 @@ try{
   const logout=document.querySelector('#logout');//Navbar logout ID
   logout.addEventListener('click',(e)=>{
     e.preventDefault();
-    location.replace("./app.html")
+    setTimeout(() => {  location.replace("./app.html"); }, 2000);
+    Swal.fire({
+      title: 'התנתקת בהצלחה',
+      
+      icon: 'success',
+      
+    })
     auth.signOut();
   });
   
@@ -66,11 +95,31 @@ try{
     // log the user in
     auth.signInWithEmailAndPassword(email, password).then((cred) => {
       console.log(cred.user);
-      location.replace("./app.html")
-      // close the signup modal & reset form
+      setTimeout(() => {  
+        loginForm.reset();
+        location.replace("./app.html") }, 2000);
       
-      loginForm.reset();
-    });
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        
+      })
+      
+      Toast.fire({
+        icon: 'success',
+        title: 'Signed in successfully'
+      })
+    }).catch(err=>{
+      Swal.fire({
+        title: '!שימו לב',
+        text: 'שם משתמש או סיסמה לא נכונים',
+        icon: 'error',
+        confirmButtonText: 'אישור'
+      })
+    })
 
   });
 
