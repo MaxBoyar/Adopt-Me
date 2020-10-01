@@ -18,14 +18,13 @@ if(!firebase.apps.length){
   
 }
 
-//////////////////////////////#conditional menu //25/09
+//////////////////////////////Conditional menu 
 if (!loggedIn){
   var loggedIn=document.querySelectorAll('.logged-in');
   var loggedOut=document.querySelectorAll('.logged-out');  
 
 }
-//var loggedIn=document.querySelectorAll('.logged-in');
-//var loggedOut=document.querySelectorAll('.logged-out');  
+
 const setupUI=(user) =>{
   if (user){
     console.log('setup ui')
@@ -46,12 +45,12 @@ const setupUI=(user) =>{
 
 
 
-
+//observer
 auth.onAuthStateChanged(user => {
   if (user){
-    console.log('user logged in: ',user);
+    
     setupUI(user);
-    //location.replace("./app.html")
+    
     
   }
   else{
@@ -90,11 +89,13 @@ try{
   // get user info
   const email = document.querySelector('#user').value;
   const password = document.querySelector('#pass').value;
-  console.log(email)
+  
 
     // log the user in
     auth.signInWithEmailAndPassword(email, password).then((cred) => {
-      console.log(cred.user);
+      
+
+
       setTimeout(() => {  
         loginForm.reset();
         location.replace("./app.html") }, 2000);
@@ -126,7 +127,7 @@ try{
 
 }
 catch(err){
-  //console.log(err.message)
+  
 }
 
 

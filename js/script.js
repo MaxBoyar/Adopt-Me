@@ -139,12 +139,12 @@ var mapLocation = L.icon({
       var y=cords[0]  
       
       
-      var str=`<h4>${childData.properties.Name}</h4><hr>`;
+      var str=`<h4 id="popUpHead">${childData.properties.Name}</h4><hr>`;
       str+=`<div class="compImage"><img src="${childData.properties.Logo}" alt="" width="100" height="100"></div>`
-      str+="<h5 style=text-align:center>"+childData.properties.City+"</h5>"
-      str+="<h5 style=text-align:center>"+childData.properties.Address+"</h5>"
-      str+="<h5 style=text-align:center>"+"שעות: "+childData.properties.Hours+"</h5>"
-      str+="<h5 style=text-align:center>"+childData.properties.Phone+"</h5>"
+      str+="<h5 class='popUpContent' style='text-align:center'>"+childData.properties.City+"</h5>"
+      str+="<h5 class='popUpContent' style=text-align:center>"+childData.properties.Address+"</h5>"
+      str+="<h5 class='popUpContent' style=text-align:center>"+"שעות: "+childData.properties.Hours+"</h5>"
+      str+="<h5 class='popUpContent' style=text-align:center>"+childData.properties.Phone+"</h5>"
       
       str+=`<div class="col-md-12 text-center">
       <button style="text-align:center; margin-bottom: 1vh;margin-left:1vh;" onclick="checkValueNotEmpty()" class="compIcon btn btn-info" >הצג זמן נסיעה ומסלול משוערים</a></button>
