@@ -1,6 +1,4 @@
-
 var changer=0
-console.log("script")
 // Your web app's Firebase configuration
  var firebaseConfig = {
   apiKey: "AIzaSyD9dOZhcsCMCZoXscAdeCOkWF84iWZXwAI",
@@ -19,46 +17,7 @@ if(!firebase.apps.length){
   var auth = firebase.auth();  
 }
 
-// //////////////////////////////#conditional menu
-// if (!loggedIn){
-//   var loggedIn=document.querySelectorAll('.logged-in');
-//   var loggedOut=document.querySelectorAll('.logged-out');  
 
-// }
-// //var loggedIn=document.querySelectorAll('.logged-in');
-// //var loggedOut=document.querySelectorAll('.logged-out');  
-// const setupUI=(user) =>{
-//   if (user){
-//     console.log('setup ui')
-//     loggedIn.forEach(item=> item.style.display="block");
-//     loggedOut.forEach(item=> item.style.display="none");
-//   }
-//   else{
-//     console.log('no setup ui')
-//     loggedIn.forEach(item=> item.style.display="none");
-    
-//     loggedOut.forEach(item=> item.style.display="block");
-    
-
-//   }
-// }
-
-
-// function getData(){
-//   firebase.database().ref('places/features').once('value',function(snapshot){
-//     snapshot.forEach(function(childSnapshot)
-//     {
-//       var childData=childSnapshot.val();
-//       var child=childSnapshot.key;
-//       console.log(childData.properties.City)
-//       console.log(child.geometry)
-//       // var childKey=childSnapshot.key;
-//       // var childData=childSnapshot.val();
-//       // option1.innerHTML+=`<option style="text-align:center;"  value="1">${childData['Name']}</option>`;
-//     })
-//   })
-// }
-// getData();
 
 
 
@@ -131,12 +90,14 @@ var mapLocation = L.icon({
 
  function getData(){
   firebase.database().ref('places/features').once('value',function(snapshot){
+    
     snapshot.forEach(function(childSnapshot)
     {
       var childData=childSnapshot.val();
       var cords=childData.geometry.coordinates
       var x=cords[1]     
       var y=cords[0]  
+      
       
       
       var str=`<h4 id="popUpHead">${childData.properties.Name}</h4><hr>`;
@@ -157,16 +118,13 @@ var mapLocation = L.icon({
       
       </div>`
       L.marker([x,y],{icon:pawMarker}).bindPopup(str).on('click', lats).addTo(mymap);//lats is function that getting coordinates
-     
+      
     })  
     
   })
 }
 getData();
 
-//Markers test
-// //////var marka1=L.marker([31.771959, 35.217018],{icon:pawMarker}).addTo(mymap).bindPopup("HAdfdfdha")
-//var marka2=L.marker([31.771959, 36.217018],{icon:pawMarker}).addTo(mymap).bindPopup("HAhaha")
 
 ///////////////////////Zoom out button//////////
 var btnA=document.querySelector('.btnZoomOut');
@@ -1687,13 +1645,13 @@ function setZoom(){
 var latsxy
 function lats(e) {
   latsxy=this.getLatLng();
-  //console.log(latsxy)
+
   
 }
 
 var routingControl
 function checkValueNotEmpty(){
-  // console.log(formControl.value)
+  
   if(!formControl.value){
       
       Swal.fire({

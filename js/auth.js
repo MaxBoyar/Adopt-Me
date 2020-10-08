@@ -1,5 +1,5 @@
 // Your web app's Firebase configuration
-console.log("auth check")
+
 var firebaseConfig = {
   apiKey: "AIzaSyD9dOZhcsCMCZoXscAdeCOkWF84iWZXwAI",
   authDomain: "adopt-me-3d1c1.firebaseapp.com",
@@ -32,7 +32,7 @@ const setupUI=(user) =>{
     loggedOut.forEach(item=> item.style.display="none");
   }
   else{
-    console.log('no setup ui')
+    
     loggedIn.forEach(item=> item.style.display="none");
     
     loggedOut.forEach(item=> item.style.display="block");
@@ -54,7 +54,7 @@ auth.onAuthStateChanged(user => {
     
   }
   else{
-    console.log('user not logged in: ');
+    
     setupUI();
   }
 })
@@ -77,7 +77,7 @@ try{
   
 }
 catch(err){
-  //console.log(err.message)
+
 }
 
 // login

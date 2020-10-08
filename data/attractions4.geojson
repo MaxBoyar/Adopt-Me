@@ -1,9 +1,6 @@
 {
-"type": "FeatureCollection",
-"name": "attractions4",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"Shifts": "FeatureCollection",
 "features": [
-{ "type": "Feature", "properties": { "id": null, "Name": "אריאלה - חנות חיות עם אהבה", "Logo": "https:\/\/scontent.ftlv16-1.fna.fbcdn.net\/v\/t1.0-9\/21616356_1558788434143107_3237533741222350148_n.png?_nc_cat=102&_nc_sid=09cbfe&_nc_ohc=iXGw5FYhkAEAX9rMwwb&_nc_ht=scontent.ftlv16-1.fna&oh=1cb83e2702e1ea4b81cddd433e005e20&oe=5F8085DE", "City": "ראשון לציון", "Address": "ברשבסקי 7", "Hours": "\nימים א' - ה': 9:00 - 21:00", "FbURL": "https:\/\/www.facebook.com\/ariela.pets", "WebURL": "https:\/\/ariela-pets.co.il\/", "Phone": "03-6206208", "Waze": "https:\/\/www.waze.com\/he\/livemap\/directions?latlng=31.9742386%2C34.8097708&utm_expid=.KK1RTwPqS-qZm6T6gtvv1A.0&utm_referrer=", "Additional": null }, "geometry": { "type": "Point", "coordinates": [ 34.809919871407473, 31.974244079975261 ] } },
-{ "type": "Feature", "properties": { "id": null, "Name": "אגודת צער בעלי חיים", "Logo": "https:\/\/www.wiselydo.co.il\/wp-content\/uploads\/2018\/01\/SPCA-logo.jpg", "City": "תל אביב", "Address": "הרצל 159", "Hours": "א-ה (17:30-10:00), שישי (12:30-8:00) ושבת (13:00-11:00)", "FbURL": "https:\/\/www.facebook.com\/SPCAIL", "WebURL": "https:\/\/spca.co.il\/", "Phone": "03-5136500", "Waze": "https:\/\/www.waze.com\/he\/livemap\/directions?latlng=32.04671%2C34.769195&utm_expid=.KK1RTwPqS-qZm6T6gtvv1A.0&utm_referrer=", "Additional": null }, "geometry": { "type": "Point", "coordinates": [ 34.76923818967412, 32.046745377356643 ] } }
+{ "properties": { "id": null, "Date": "2020-10-02", "Day": "Friday", "Shift": "Afternoon", "10BIS": "", "ExtraHours": "", "Money": "500"  } }
 ]
 }
